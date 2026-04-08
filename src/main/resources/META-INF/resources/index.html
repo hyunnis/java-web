@@ -6,17 +6,23 @@
         <title>league of legends - 메인 페이지 </title>
         <!-- Bootstrap 5 CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <script src="js/bootstrap.bundle.min" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <script src="js/test.js"></script>
+        <script>
+            window.onload = function() {
+                alert("메인 페이지 로딩 완료");
+                }
+        </script>
         <!-- (lol 테마 + 챔피언 호버 효과) -->
         <style>
             body {background-color: #0a0e17; color: #fff;}
-            .accent-purple {color: #ff98f0;}
+            .accent-purple {color: #1affd5;}
             .card {background-color: #1e1e1e; border:none; color:white;}
             .btn-primary {background-color: #a020f0; border: none;}
             /* 4단계 : 애니메이션 및 시각 효과 주기 */
             .card {transition: transform 0.3s, box-shadow 0.3s;}
             .card:hover {transform: scale(1.05);/* 마우스를 올리면 커짐 */
-            box-shadow: 0 10px 20px rgba(188, 255, 32, 0.5); /* 보라색 광원 효과 */}
+            box-shadow: 0 10px 20px rgba(242, 255, 0, 0.734); /* 보라색 광원 효과 */}
             .card-img-top {height: 200px; object-fit: cover; /* 이미지가 찌그러지지 않게 채움*/}
         </style>
     </head>
@@ -24,12 +30,12 @@
         <!-- 헤더 Navbar-->
         <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">리그오브레전드</a>
+            <a class="navbar-brand" href="#"><img src="images/lol_logo.jpeg" alt="LOL로고" width="40">리그오브레전드</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#">뉴스</a>
                     </li>
@@ -37,7 +43,7 @@
                         <a class="nav-link" href="#">챔피언</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://download.kr.riotgames.com/league">다운로드</a>
+                        <a class="nav-link" href="main_page_sub/download.html">다운로드</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">로그인</a>
@@ -51,6 +57,10 @@
                     </ul>
                     </li>
                 </ul>
+                <form class="d-flex" id="searchForm">
+                    <input class="form-control me-2" type="search" placeholder="챔피언, 뉴스 검색 ..." aria-label="Search" id="searchInput">
+                    <button class="btn btn-outline-success" type="submit">검색하기</button>
+                </form>
             </div>
         </div>
         </nav>
@@ -59,7 +69,8 @@
             <div class="container">
                 <h1 class="display-3 fw-bold">League of Legends</h1>
                 <p class="lead">적의 넥서스를 파괴하세요! 5v5 MOVA 전투에서 팀과 함께 승리하세요.</p>
-                <a href="#" class="btn btn-primary btn-lg">무료 플레이</a>
+                <!--<a href="#" class="btn btn-primary btn-lg">무료 플레이</a>-->
+                <a href="#" class="btn btn-primary btn-lg" onclick="alert('즐거운 플레이 되세요!')">무료 플레이</a>
             </div>
         </section>
 
@@ -114,9 +125,9 @@
         <!--jax-->
         <div class="col-md-6 col-lg-4 col-xl-2">
             <div class="card bg-dark text-pupple border-secondary h-100">
-                <img src="images/Sylas.png" class="card-img-top" alt="잭스">
+                <img src="images/Jax.png" class="card-img-top" alt="잭스">
                 <div class="card-body">
-                <h5 class="card-title">JAX(탑)</h5>
+                <h5 class="card-title">Jax(탑)</h5>
                     <p class="card-text small">대장간의 주인!</p>
                 </div>
             </div>
@@ -124,10 +135,40 @@
         <!--Jinx-->
         <div class="col-md-6 col-lg-4 col-xl-2">
             <div class="card bg-dark text-pupple border-secondary h-100">
-                <img src="images/Sylas.png" class="card-img-top" alt="진스">
+                <img src="images/Jinx.png" class="card-img-top" alt="진스">
                 <div class="card-body">
                 <h5 class="card-title">Jinx(원딜)</h5>
                     <p class="card-text small">폭발로 적을 날려버리세요.</p>
+                </div>
+            </div>
+        </div>
+        <!--mel-->
+        <div class="col-md-6 col-lg-4 col-xl-2">
+            <div class="card bg-dark text-pupple border-secondary h-100">
+                <img src="images/mel.png" class="card-img-top" alt="멜">
+                <div class="card-body">
+                <h5 class="card-title">mel(원딜)</h5>
+                    <p class="card-text small">저들의 예상은 빗나갈 겁니다.</p>
+                </div>
+            </div>
+        </div>
+        <!--yunara-->
+        <div class="col-md-6 col-lg-4 col-xl-2">
+            <div class="card bg-dark text-pupple border-secondary h-100">
+                <img src="images/yunara.png" class="card-img-top" alt="유나라">
+                <div class="card-body">
+                <h5 class="card-title">yunara(원딜)</h5>
+                    <p class="card-text small">꺾이지 않는 신념</p>
+                </div>
+            </div>
+        </div>
+        <!--Zaahen-->
+        <div class="col-md-6 col-lg-4 col-xl-2">
+            <div class="card bg-dark text-pupple border-secondary h-100">
+                <img src="images/Zaahen.png" class="card-img-top" alt="자르헨">
+                <div class="card-body">
+                <h5 class="card-title">Zaahen(원딜)</h5>
+                    <p class="card-text small">타락에 맞서 싸우리라.</p>
                 </div>
             </div>
         </div>
@@ -136,5 +177,31 @@
     <h1>최신 뉴스</h1>
     <h2>새로운 챔피언 출시</h2>
     <p>2026  루나 레벨 이벤트!</p>
+
+    <!-- 모달 (iframe으로 Aatrox.html 불러오기) -->
+    <div class="modal fade" id="modalAatrox" tabindex="-1" aria-labelledby="modalAatroxLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white border-secondary">
+    <!-- 헤더-->
+    <div class="modal-header border-secondary">
+        <h5 class="modal-title" id="modalAatroxLabel">아트록스 (Aatrox) 상세 정보</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <!-- 바디: iframe으로 내용 채움-->
+    <div class="modal-body p-0" style="height: 65vh; background: #0a0e17;">
+    <iframe src="modals/Aatrox.html"
+        frameborder="0"
+        style="width: 100%; height: 100%; border: none;"
+        allowfullscreen>
+    </iframe>
+    </div>
+    <!-- 푸터-->
+    <div class="modal-footer border-secondary">
+        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">닫기</button>
+    </div>
+    </div>
+</div>
+</div>
+    <script src="js/search.js"></script>"
     </body>
 </html>
