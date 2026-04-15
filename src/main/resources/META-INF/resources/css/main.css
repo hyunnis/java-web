@@ -1,0 +1,10 @@
+body {background-color: #0a0e17; color: #fff;}
+.accent-purple {color: #1affd5;}
+.card {background-color: #1e1e1e; border:none; color:white;}
+.btn-primary {background-color: #a020f0; border: none;}
+
+/* 4단계 : 애니메이션 및 시각 효과 주기 */
+.card {transition: transform 0.3s, box-shadow 0.3s;}
+.card:hover {transform: scale(1.05);/* 마우스를 올리면 커짐 */
+box-shadow: 0 10px 20px rgba(242, 255, 0, 0.734); /* 보라색 광원 효과 */}
+.card-img-top {height: 200px; object-fit: cover; /* 이미지가 찌그러지지 않게 채움*/}
