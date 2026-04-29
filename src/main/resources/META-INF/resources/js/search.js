@@ -71,7 +71,7 @@ function switchCategory(type, el) {
     document.querySelectorAll('.search-category-item').forEach(i =>
 i.classList.remove('active'));
     el.classList.add('active');
-    document.getElementById('resyltChampion').style.display = type === 'champion' ? 'bloack' : 'none';
+    document.getElementById('resultChampion').style.display = type === 'champion' ? 'block' : 'none';
     document.getElementById('resultNews').style.display = type === 'news' ? 'block' : 'none';
 }
 

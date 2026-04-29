@@ -8,6 +8,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <script src="js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         <!-- <script src="js/test.js"></script> -->
+        <script src="js/test2.js"></script>
+        <script src="js/toggle.js"></script>
+
         <link rel ="stylesheet" href="css/main.css">
         <script>
             window.onload = function() {
@@ -20,7 +23,12 @@
         <!-- 헤더 Navbar-->
         <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="images/lol_logo.jpeg" alt="LOL로고" width="40">리그오브레전드</a>
+            <a class="navbar-brand" href="#">
+            <img src="images/lol_logo.jpeg" alt="LOL로고" width="30" height="24">
+            <!--변경 -->
+            <button class="btn border-0" id="themeToggleBtn" onclick="toggleTheme()">
+                🌙 DARK
+            </button>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -177,10 +185,10 @@
                     <!-- 왼쪽 카테고리 사이드바 -->
                     <div class="col-md-3 col-lg-2 search-sidebar bg-white py-4">
                         <div class="px-3 mb-3" style="font-size:0.8rem; color:#999; text-transform:uppercase; letter-spacing: 0.1em;">카테고리</div>
-                            <div class="search-category-item active" onclick="swithCategory('champion', this)">
+                            <div class="search-category-item active" onclick="switchCategory('champion', this)">
                                 챔피언 <span class="count" id="champCount">(0)</span>
                             </div>
-                            <div class="search-category-item" onclick="swithCategory('news',this)">
+                            <div class="search-category-item" onclick="switchCategory('news',this)">
                                 뉴스 <span class="count" id="newsCount">(0)</span>
                             </div>
                     </div>
