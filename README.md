@@ -35,7 +35,13 @@ table 표 tr, th, td 항목으로 채워짐
 important : 강제
 실습3 : 데이터베이스 연동
 
-
+## 10주차 수업 내용
+실습1: 9주차에 이어 데이터 베이스 연동
+만든 폴더 : champion.java / championResource.java / DataSeeder.java
+실습2 : 로그인과 로그아웃
+resource > login > login.html / main_after_login.html 파일 만들고
+로그인 할 수 있는 html 작성 
+dataseeder에 User 추가하려면 맨 위에 User 클래스인 import org.acme.login.User; 연동해야함
 <div align ="center">
     <img src="">
     <img src="">
