@@ -6,11 +6,29 @@ import jakarta.ws.rs.core.Response;
 import java.net.URI;
 import java.io.InputStream;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import io.vertx.codegen.annotations.GenIgnore;
 import io.vertx.ext.web.RoutingContext;
 
 @Path("/") // 기본 경로가 최상위 /
 public class AuthResource {
+
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public Response mainPage() {
+        String loginUser = context.session().get("loginUser");
+
+        System.out.println("=== [GET /] 세션 ID : " + context.session().id());
+        System.out.println("=== [GET /] loginUser : " + loginUser);
+
+        String htmlPath = (loginUser !=null)
+            ? "META-INF/resources/login/main_after_login.html"
+            : "META-INF/resources/main_index.html";
+        
+        InputStream html =
+    getClass().getClassLoader().getResourceAsStream(htmlPath);
+        return Response.ok(html).build();
+    }
 
     // GET / login -> 로그인 HTML 페이지 반환
     @GET
@@ -97,6 +115,55 @@ public class AuthResource {
             .getClassLoader()
             .getResourceAsStream(
                 "META-INF/resources/login/register.html");
+        return Response.ok(html).build();
+    }
+    @POST
+    @Path("/register_check")
+    @Transactional
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_HTML)
+
+    public Response registerCheck(
+    @FormParam("username") String username,
+    @FormParam("password") String password, // SHA-256 해시값
+    @FormParam("email") String email,
+    @FormParam("phone") String phone) {
+        
+    // 1. 아이디 중복 체크
+    if (User.findByUsername(username)!= null) {
+        return Response
+            .seeOther(URI.create("/register?error=duplicate_username"))
+            .build();
+    }
+    // 2. 이메일 중복 체크
+    if (User.findByEmail(email) != null) {
+        return Response
+            .seeOther(URI.create("/register?error=duplicate_email"))
+            .build();
+    }
+    // 3. DB 삽입
+    User newUser = new User();
+    newUser.username = username;
+    newUser.password = password; // 해시값 저장
+    newUser.email = email;
+    newUser.phone = phone;
+    newUser.persist();
+
+    // 4. 가입 완료 페이지로 이동
+    return Response
+        .seeOther(URI.create("/rehister_success"))
+        .build();
+    }
+
+    @GET
+    @Path("/register_success")
+    @Produces(MediaType.TEXT_HTML)
+
+    public Response registerSuccess() {
+        InputStream html = getClass()
+            .getClassLoader()
+            .getResourceAsStream(
+            "META-INF/resources/login/register_success.html");
         return Response.ok(html).build();
     }
 }

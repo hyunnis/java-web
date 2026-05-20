@@ -52,7 +52,7 @@ function validateAndShowModal() {
     }
 
     // 전체 동과 시 확인 모달 출력
-        if (valid) showConfrimModal();
+        if (valid) showConfirmModal();
 }
 function showError(fieldId, message) {
     const field = document.getElementById(fieldId);

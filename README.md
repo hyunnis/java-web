@@ -48,6 +48,13 @@ dataseeder에 User 추가하려면 맨 위에 User 클래스인 import org.acme.
 실습2 : 회원가입
 register.html 을 생성하여 아이디, 비밀번호, 이메일, 연락처 입력 후 회원가입하기
 
+## 12주차 수업 내용
+실습1:
+실습2: 도메인 패키지 구조 설정<br>
+login/>profile.html<br>
+uploads/>profile/
+
+
 
 <div align ="center">
     <img src="">
