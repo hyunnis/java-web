@@ -9,6 +9,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import io.vertx.codegen.annotations.GenIgnore;
 import io.vertx.ext.web.RoutingContext;
+import java.util.Map;
+
 
 @Path("/") // 기본 경로가 최상위 /
 public class AuthResource {
@@ -151,7 +153,7 @@ public class AuthResource {
 
     // 4. 가입 완료 페이지로 이동
     return Response
-        .seeOther(URI.create("/rehister_success"))
+        .seeOther(URI.create("/register_success"))
         .build();
     }
 
@@ -166,4 +168,58 @@ public class AuthResource {
             "META-INF/resources/login/register_success.html");
         return Response.ok(html).build();
     }
+
+    @GET
+    @Path("/profile")
+    @Produces(MediaType.TEXT_HTML)
+
+    public Response profilePage() {
+        // 1. 세션 체크(로그인 안 한 사용자 차단)
+        String loginUser = context.session().get("loginUser");
+        if (loginUser == null) {
+            return Response
+                .seeOther(URI.create("/login"))
+                .build();
+        }
+        // 2.DB에서 사용자 정보 조회
+        User user = User.findByUsername(loginUser);
+
+        // 3. 세션에 사용자 정보 저장(HTML에서 활용)
+        context.session().put("userEmail",user.email);
+        context.session().put("userPhone", user.phone);
+        context.session().put("profileImage",
+            user.profileImage != null ? user.profileImage : "default.png");
+            
+        // 4. 프로필 페이지 반환
+        InputStream html = getClass()
+            .getClassLoader()
+            .getResourceAsStream(
+                "META-INF/resources/login/profile.html");
+        return Response.ok(html).build();
+        }
+    
+        @GET
+        @Path("/profile/info")
+        @Produces(MediaType.APPLICATION_JSON)
+
+        public Response profileInfo() {
+            // 세션 체크
+            String loginUser = context.session().get("loginUser");
+            if (loginUser == null) {
+                return Response.status(401).build();
+            }
+
+            //DB조회
+            User user = User.findByUsername(loginUser);
+
+            //Json 응답
+            return Response.ok(
+                Map.of(
+                    "username", user.username,
+                    "email", user.email != null ? user.email : "",
+                    "phone", user.phone != null ? user.phone : "",
+                    "profileImage", user.profileImage != null ? user.profileImage : ""
+                )
+            ).build();
+        }
 }
