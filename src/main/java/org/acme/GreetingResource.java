@@ -21,6 +21,6 @@ public class GreetingResource {
         // public(접근 제한자) + String(반환 타입) + hello()(메서드명)
         return "Hello from Quarkus REST";
         // 리턴문
-        // 메서드가 반환할 값을 지정. 반환타입 = String ->> 문자열 반환ㄴ
+        // 메서드가 반환할 값을 지정. 반환타입 = String ->> 문자열 반환
     }
 }
